@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :tanks, Tanks.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "tanksdb",
-  password: "123tanks902",
+  username: "derekDS",
+  password: "sxs07@WoaiDS",
   database: "tanks_dev",
   hostname: "localhost",
   pool_size: 10
