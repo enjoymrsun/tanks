@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Hello Tanks!</title>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+  </head>
+
+  <body>
+    <div id="masthead">
+      <nav>
+        <ul class="nav nav-pills">
+          <%= if @current_user do %>
+            <script type="text/javascript">
+              window.user = <%= @current_user.id %>;
+            </script>
+            <li>
+              Logged in as: <%= link raw(@current_user.name), to: user_path(@conn, :show, @current_user.id), class: "btn btn-info" %>
+            </li>
+            <li>
+              <%= link "Logout", to: auth_path(@conn, :logout), method: :delete, class: "btn btn-light" %>
+            </li>
+          <% else %>
+            <li>
+              <%= link "Sign in", to: auth_path(@conn, :index), class: "btn btn-light" %>
+            </li>
+          <% end %>
+          <li>
+            <span><%= link "After Game, Back To Home.", to: page_path(@conn, :index) %></span>
+          </li>
+        </ul>
+      </nav>
+      <%= if @view_module == TanksWeb.PageView do %>
+        <div id="banner-image"></div>
+      <% end %>
+      <h3>Welcome to Tank Game! A 2~4 players Game!</h3>
+    </div>
+    <div class="container">
+
+
+      <%= if get_flash(@conn, :info) do %>
+        <p class="alert alert-info text-center" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+
+      <%= if get_flash(@conn, :error) do %>
+        <p class="alert alert-danger text-center" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
+
+      <main role="main">
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+
+    </div> <!-- /container -->
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+</html>
