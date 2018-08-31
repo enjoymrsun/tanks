@@ -17,6 +17,7 @@ if [ $USER != "xs" ]; then
 	exit 2
 fi
 
+mix release.init
 mix deps.get
 (cd assets && npm install)
 (cd assets && ./node_modules/brunch/bin/brunch b -p)
