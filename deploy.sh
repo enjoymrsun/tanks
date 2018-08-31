@@ -44,4 +44,4 @@ crontab - <<CRONTAB
 @reboot bash /home/xs/src/tanks/start.sh
 CRONTAB
 
-#. start.sh
+. start.sh
